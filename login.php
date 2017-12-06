@@ -8,7 +8,7 @@ if ($connect->connect_error) {
 } 
 if($_POST)
 {
-$query = "SELECT * FROM users WHERE login='$_POST[ulogin]' and password='$_POST[upass]' ";
+$query = "SELECT * FROM users WHERE login='$_POST[ulogin]' and password=md5('$_POST[upass]') ";
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) == 1)
 {
