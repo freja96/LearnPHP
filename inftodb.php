@@ -15,11 +15,5 @@ if ($connect->connect_error) {
     			echo "Error: " . $query . "<br>" . $connect->error;
 			}
 }
-	$queryshow = "SELECT (id, name, headline, story) FROM news ORDER BY dateadd DESC";
-	if ( $connect->queryshow($queryshow)== TRUE)
-	{
-
-	}else{"Error";}
-
-
+	
 ?>
