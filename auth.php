@@ -1,11 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Регистрация</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+<div class="home">
+<form action="auth.php" method="POST">
+<div class="auth">
+<h1>Регистрация</h1>
 <?php
-
-$connect = mysqli_connect("localhost", "q77671s8_rem","rootrem%","q77671s8_rem");
-
+$connect = mysqli_connect("localhost", "q77671s8_rem","rem%root","q77671s8_rem");
+mysqli_set_charset($connect, 'utf8');
 if ($connect->connect_error) {
     die("Connection failed: " . $connect->connect_error);
 } 
-
 if (isset($_POST['auth'])) {
 	$errors = array();
 
@@ -32,34 +41,32 @@ if (isset($_POST['auth'])) {
 		$query = "INSERT INTO users (login, email, password) VALUES ('$_POST[login]','$_POST[email]', md5('$_POST[password]'))";
 		if  ($connect->query($query) ===TRUE)
 		{
-			echo "Регистрация прошла успешно";
+			echo "Регистрация прошла успешно    ";
 			echo "Теперь можете <a href='login.php'>авторизоватся</a>";
 		}
 
-	}else{echo array_shift($error);}
+	}else{echo array_shift($errors);}
 }
-
-
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Регистрация</title>
-</head>
-<body>
-
-<form action="auth.php" method="POST">
-<table>
 	<tr>
-	<td><input type="text" name="login" placeholder="Введите ваш логин"></td>
-	<td><input type="text" name="email" placeholder="Введите вашу электронную почту"></td>
-	<td><input type="password" name="password" placeholder="Пароль"></td>
-	<td><input type="password" name="repassword" placeholder="Повторный пароль"></td>
-	<td><input type="submit" name="auth"></td>
+		<input type="text" name="login" placeholder="Введите ваш логин" value="<?php echo @$_POST[login]; ?>">
 	</tr>
-</table>
-</form>
+	<tr>
+		<input type="text" name="email" placeholder="Введите вашу электронную почту" value="<?php echo @$_POST[email]; ?>">
+	</tr>
+	<tr>
+		<input type="password" name="password" placeholder="Пароль" >
+	</tr>
+	<tr>
+		<input type="password" name="repassword" placeholder="Повторный пароль">
+	</tr>
+	<tr>
+		<input type="submit" name="auth" value="Регистрация">
+	</tr>
 
+</div>
+</form>
+</div>
 
 
 </body>
