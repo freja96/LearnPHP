@@ -1,0 +1,9 @@
+CREATE TABLE users (
+    `id` int(100) NOT NULL AUTO_INCREMENT,
+    `login` varchar(40) NOT NULL,
+    `email` varchar(100) NOT NULL,
+    `password` varchar(100) NOT NULL,
+    `JoinDate` TIMESTAMP(2) NOT NULL DEFAULT CURRENT_TIMESTAMP(2),
+    PRIMARY KEY(`id`)
+    )
+    ENGINE=MYISAM  AUTO_INCREMENT=1;
