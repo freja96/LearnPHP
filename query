@@ -7,3 +7,14 @@ CREATE TABLE users (
     PRIMARY KEY(`id`)
     )
     ENGINE=MYISAM  AUTO_INCREMENT=1;
+POST
+
+CREATE TABLE post (
+    `id` int(100) NOT NULL AUTO_INCREMENT,
+    `login` varchar(40) NOT NULL,
+    `header` varchar(200) NOT NULL,
+    `post` text NOT NULL,
+    `JoinDate` TIMESTAMP(2) NOT NULL DEFAULT CURRENT_TIMESTAMP(2),
+    PRIMARY KEY(`id`)
+    )
+    ENGINE=MYISAM  AUTO_INCREMENT=1;
