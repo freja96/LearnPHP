@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Record Form</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("show.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>
+
+
+</head>
+<body>
+<p class="top">SQL запросы  INSERT и  LIKE</p>
+<div class="form">
+<div >
+<form action="insert.php" method="post">
+<h3 class="vv">Введите свои инициалы</h3>
+    <p id="insert">
+       <label for="firstName">First Name:</label>
+        <input type="text" name="fistname" id="fistname">
+    </p>
+    <p id="insert">
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastname" id="lastname">
+    </p>
+  
+    <button id="inf" type="submit"> <input id="but" type="submit" value="Insert"></button>
+
+</form>
+<br><br>
+<form action="show.php" method="posr"> 
+
+		
+</form>
+</div>
+
+</div>
+<div class="forms">
+<h4>Живой поиск в Базе Данных</h4>
+<h4>Пишите на английсиком наш сервис не поддерживает русский язык :)</h4>
+    <p id="insert">
+           <div class="search-box">
+
+                <input type="text" autocomplete="off" placeholder="FirstName" />
+                <div class="result"></div>
+            </div>
+    </p>
+    </div>
+
+   <button id="inf"> <a href="phones.php">Cellphones</a></button>
+
+</body>
+</html>
