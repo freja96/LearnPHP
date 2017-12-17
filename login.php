@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Автоизация</title>
-	<link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-<body>
-<div class="home">
-<div class="auth">
 <?php
 session_start();
 //Подключаемся к mysql
-$connect = mysqli_connect("localhost", "q77671s8_rem","rem%root","q77671s8_rem");
-mysqli_set_charset($connect, 'utf8');
+$connect = mysqli_connect("localhost", "root", "root", "neww");
+//Проверка на то что мы правильно подключились или нет
+if ($connect->connect_error) {
+    die("Connection failed: " . $connect->connect_error);
+} 
 if($_POST)
 {
 $query = "SELECT * FROM users WHERE login='$_POST[ulogin]' and password=md5('$_POST[upass]') ";
@@ -20,21 +14,22 @@ if(mysqli_num_rows($result) == 1)
 {
 	session_start();
 	$_SESSION['auth']='true';
-	header('Location:index.php');
+	header('Location:menu.php');
 }else { echo "Something wrong password or login";}
+
+
+
 }
+
+
+
 $connect->close();
 ?>
-	<form action="login.php" method="POST">
-		<h1>Авторизация</h1>
-		<input type="text" name="ulogin" placeholder="Логин" value="<?php echo @$_POST[login]; ?>">
-		<input type="password" name="upass" placeholder="Пароль">
 
-		<input type="submit" name="submitLog">
-	</form>
-	<a href="signup.php">Sign Up</a>
-</div>
-</div>
+<form action="login.php" method="POST" mult>
+<input type="text" name="ulogin" placeholder="Write your login" value="<?php echo @$_POST[login]; ?>">
+<input type="password" name="upass" placeholder="password">
 
-</body>
-</html>
+<input type="submit" name="submitLog">
+</form>
+<a href="signup.php">Sign Up</a>
