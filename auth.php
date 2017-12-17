@@ -1,9 +1,17 @@
+<?php
+
+session_start();
+require 'include/config.php';
+foreach ($bd_connect as $v => $value) {
+	echo $v." ".$value;
+}
+echo $bd_connect['root'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Регистрация</title>
-	<link rel="stylesheet" type="text/css" href="style/style.css">
-	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
 
 
@@ -15,11 +23,7 @@
 <div class="auth">
 <center><h1>Регистрация</h1></center>
 <?php
-$connect = mysqli_connect("localhost", "q77671s8_rem","rem%root","q77671s8_rem");
-mysqli_set_charset($connect, 'utf8');
-if ($connect->connect_error) {
-    die("Connection failed: " . $connect->connect_error);
-} 
+
 if (isset($_POST['auth'])) {
 	$errors = array();
 
@@ -76,15 +80,7 @@ if (isset($_POST['auth'])) {
 </div>
 </form>
 </div>
-	<script>
-	document.getElementById("submit").disabled = true;
-	
-	
-	function enableBtn() {
-  	document.getElementById('submit').disabled = false;
-  	document.getElementById("sub").innerHTML = "Now you can click it";
-  	}
-  </script>
+
 
 </body>
 </html>
