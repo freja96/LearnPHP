@@ -58,16 +58,19 @@ if (isset($_POST['auth'])) {
 }
 ?>
 	<tr>
-		<input type="text" name="login" placeholder="Введите ваш логин" value="<?php echo @$_POST[login]; ?>">
+		<input type="text" name="login" placeholder="Придумайте логин от 6 до 14 значений" value="<?php echo @$_POST[login]; ?>" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{6,14}$" required>
+		<h7 style="color:rgb(255,0,0); margin-left: 30px;">Логин должен состоять только из цифр и латинских букв </h7>
 	</tr>
 	<tr>
-		<input type="email" name="email" placeholder="Введите вашу электронную почту" value="<?php echo @$_POST[email]; ?>">
+		<input type="email" name="email" placeholder="Введите вашу электронную почту" value="<?php echo @$_POST[email]; ?>" required >
+		<h7 style="color:rgb(255,0,0); margin-left: 30px;">Пример: example@example.com</h7>
 	</tr>
 	<tr>
-		<input type="password" name="password" placeholder="Пароль" >
+		<input type="password" name="password" placeholder="Пароль от 6 до 16 значений  " required pattern="(?=^.{6,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+		<h7 style="color:rgb(255,0,0); margin-left: 30px;">Пример: eXample$12, объязательные условие заглавная буква, символ, цифр</h7>
 	</tr>
 	<tr>
-		<input type="password" name="repassword" placeholder="Повторный пароль">
+		<input type="password" name="repassword" placeholder="Повторный пароль" required>
 	</tr>
 	<tr>
 		<div class="g-recaptcha" data-callback="enableBtn" name="recaptcha" data-sitekey="6Ld5MD0UAAAAAE3TzpwhAn4U4Ig_9vr2ois33DLG"></div>
@@ -81,6 +84,15 @@ if (isset($_POST['auth'])) {
 </form>
 </div>
 
-
+<!--<script>
+	document.getElementById("submit").disabled = true;
+	
+	
+	function enableBtn() {
+  	document.getElementById('submit').disabled = false;
+  	document.getElementById("sub").innerHTML = "Now you can click it";
+  	}
+  </script>
+-->
 </body>
 </html>
